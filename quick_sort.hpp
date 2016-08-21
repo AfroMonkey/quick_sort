@@ -1,10 +1,10 @@
-#ifndef QUICK_SORT_HPP
-#define QUICK_SORT_HPP
+#ifndef AFRO_QUICK_SORT_HPP
+#define AFRO_QUICK_SORT_HPP
 
 #include <cstdlib> // size_t, malloc
 #include <cstring> // memcpy
 
-void swap(void* a, void* b, size_t size)
+void afro_swap(void* a, void* b, size_t size)
 {
     char *c = (char*)malloc(size);
     std::memcpy(c,a,size);
@@ -21,11 +21,11 @@ void* _partition(void* start, void* end, size_t size, int((*compare)(const void*
     {
         if (compare(j, pivot) <= 0)
         {
-            swap(i, j, size);
+            afro_swap(i, j, size);
             i += size;
         }
     }
-    swap(i, end, size);
+    afro_swap(i, end, size);
     return i;
 }
 
@@ -39,7 +39,7 @@ void _qsort(void* start, void* end, size_t size, int((*compare)(const void*, con
     }
 }
 
-void qsort(void* base, size_t num, size_t size, int((*compare)(const void*, const void*)))
+void afro_qsort(void* base, size_t num, size_t size, int((*compare)(const void*, const void*)))
 {
     _qsort(base, base + --num * size, size, compare);
 }

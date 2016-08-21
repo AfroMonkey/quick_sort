@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
         array[NUM] = std::rand();
     }
     std::cout << "Start" << std::endl;
-    qsort(array, NUM, sizeof(int), compare);
+    afro_qsort(array, NUM, sizeof(int), compare);
     for (int i = 1; i < NUM; i++)
     {
         if (array[i] < array[i-1])
