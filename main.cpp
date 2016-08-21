@@ -1,17 +1,32 @@
+#include <iostream>
+
 #include "quick_sort.hpp"
+
+#define NUM 10
 
 int compare(const void* a, const void* b)
 {
-    return 1;
+    return *(int*)a - *(int*)b;
 }
 
 int main(int argc, char const *argv[])
 {
-    int array[] = {1, 5, 12, 7, 90, 1212, 43, 12, 8, 1, 2, 34, 6, 7};
-    qsort(array, 14, sizeof(int), compare);
-    for (int i = 0; i < 14; i++)
+    int array[NUM];
+    for (int i = 0; i < NUM; i++)
     {
-        std::cout << array[i] << std::endl;
+        array[NUM] = std::rand();
     }
+    std::cout << "Start" << std::endl;
+    qsort(array, NUM, sizeof(int), compare);
+    for (int i = 1; i < NUM; i++)
+    {
+        if (array[i] < array[i-1])
+        {
+            std::cout << "Error" << std::endl;
+            std::cout << array[i-1] << "<" << array[i] << std::endl;
+            break;
+        }
+    }
+    std::cout << "End" << std::endl;
     return 0;
 }
