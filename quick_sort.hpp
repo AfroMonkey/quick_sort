@@ -19,7 +19,7 @@ void* _partition(void* start, void* end, size_t size, int((*compare)(const void*
     void* i = start;
     for (void* j = start; j < end; j += size)
     {
-        if (compare(j, pivot) <= 0)
+        if (compare(j, pivot) < 0)
         {
             afro_swap(i, j, size);
             i += size;
