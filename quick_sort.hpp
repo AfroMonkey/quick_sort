@@ -17,12 +17,12 @@ void* _partition(void* start, void* end, size_t size, int((*compare)(const void*
 {
     void* pivot = end;
     void* i = start;
-    for (void* j = start; j < end; j += size)
+    for (void* j = start; j < end; j = (char*)j + size)
     {
         if (compare(j, pivot) < 0)
         {
             afro_swap(i, j, size);
-            i += size;
+            i = (char*)i + size;
         }
     }
     afro_swap(i, end, size);
@@ -34,14 +34,14 @@ void _qsort(void* start, void* end, size_t size, int((*compare)(const void*, con
     if (start < end)
     {
         void* pivot = _partition(start, end, size, compare);
-        _qsort(start, pivot - size, size, compare);
-        _qsort(pivot + size, end, size, compare);
+        _qsort(start, (char*)pivot - size, size, compare);
+        _qsort((char*)pivot + size, end, size, compare);
     }
 }
 
 void afro_qsort(void* base, size_t num, size_t size, int((*compare)(const void*, const void*)))
 {
-    _qsort(base, base + --num * size, size, compare);
+    _qsort(base, (char*)base + --num * size, size, compare);
 }
 
 #endif

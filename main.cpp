@@ -18,15 +18,6 @@ int main(int argc, char const *argv[])
     }
     std::cout << "Start" << std::endl;
     afro_qsort(array, NUM, sizeof(int), compare);
-    for (int i = 1; i < NUM; i++)
-    {
-        if (array[i] < array[i-1])
-        {
-            std::cout << "Error" << std::endl;
-            std::cout << array[i-1] << "<" << array[i] << std::endl;
-            break;
-        }
-    }
     std::cout << "End" << std::endl;
     return 0;
 }
